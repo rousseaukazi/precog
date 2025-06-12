@@ -31,7 +31,7 @@ export default function TreeExplorer({ tree }: Props) {
   }, [handleKey]);
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <h1>Future Tree Explorer</h1>
       <div className={styles.path}>
         {path.map((node) => (
