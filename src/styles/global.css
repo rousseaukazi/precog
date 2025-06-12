@@ -1,0 +1,30 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f9fafb;
+  margin: 0;
+  padding: 1.5rem;
+  color: #111827;
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+.children {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.child {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.hint {
+  margin-top: 1rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+}

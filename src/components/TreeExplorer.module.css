@@ -1,0 +1,57 @@
+.path {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 1rem;
+}
+
+.path::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 9px;
+  width: 2px;
+  background: #d1d5db;
+}
+
+.node {
+  position: relative;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.node::before {
+  content: '';
+  position: absolute;
+  left: -11px;
+  top: 12px;
+  width: 12px;
+  height: 2px;
+  background: #d1d5db;
+}
+
+.node:first-child::before {
+  display: none;
+}
+
+.nodeText {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 4px 8px;
+  display: inline-block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

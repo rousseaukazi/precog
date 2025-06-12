@@ -1,6 +1,6 @@
 # Precog Future Explorer
 
-This project contains a minimal Next.js application that visualizes a tree of hypothetical futures. Each node includes a probability and you can navigate down the tree using number key hotkeys.
+This project contains a minimal Next.js application that visualizes a tree of hypothetical futures. Each node includes a probability and you can navigate down the tree using number key hotkeys. As you traverse, a branch is drawn on the page so you can trace the steps taken.
 
 ## Development
 
