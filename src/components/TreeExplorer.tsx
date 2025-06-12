@@ -9,6 +9,7 @@ interface Props {
 
 export default function TreeExplorer({ tree }: Props) {
   const [path, setPath] = useState<TreeNode[]>([tree]);
+  const [choices, setChoices] = useState<number[]>([]);
 
   const current = path[path.length - 1];
   const children = current.children || [];
@@ -17,10 +18,11 @@ export default function TreeExplorer({ tree }: Props) {
     (e: KeyboardEvent) => {
       const index = parseInt(e.key, 10) - 1;
       if (!isNaN(index) && children[index]) {
+        setChoices([...choices, index]);
         setPath([...path, children[index]]);
       }
     },
-    [children, path]
+    [children, path, choices]
   );
 
   useEffect(() => {
@@ -34,9 +36,23 @@ export default function TreeExplorer({ tree }: Props) {
     <div className={styles.wrapper}>
       <h1>Future Tree Explorer</h1>
       <div className={styles.path}>
-        {path.map((node) => (
-          <div key={node.id} className={styles.node}>
-            <span className={styles.nodeText}>{node.text}</span>
+        {path.map((node, idx) => (
+          <div key={node.id}>
+            <div className={styles.node}>
+              <span className={styles.nodeText}>{node.text}</span>
+            </div>
+            {idx < choices.length && (
+              <div className={styles.branches}>
+                {[...Array(5)].map((_, i) => (
+                  <div
+                    key={i}
+                    className={`${styles.branch} ${
+                      i === choices[idx] ? styles.active : ''
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>

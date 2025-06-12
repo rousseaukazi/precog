@@ -63,3 +63,34 @@
     transform: translateY(0);
   }
 }
+.branches {
+  display: flex;
+  padding-left: 20px;
+  margin: 0.25rem 0 0.75rem 0;
+}
+
+.branch {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  background: #d1d5db;
+  margin-right: 4px;
+}
+
+.branch::before {
+  content: '';
+  position: absolute;
+  left: -11px;
+  top: 0;
+  width: 11px;
+  height: 2px;
+  background: inherit;
+}
+
+.branch:last-child {
+  margin-right: 0;
+}
+
+.branch.active {
+  background: linear-gradient(#60a5fa, #3b82f6);
+}
