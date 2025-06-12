@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState, useCallback } from 'react';
 import { TreeNode } from '../data/fakeTree';
+import styles from './TreeExplorer.module.css';
 
 interface Props {
   tree: TreeNode;
@@ -31,29 +32,27 @@ export default function TreeExplorer({ tree }: Props) {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">Future Tree Explorer</h1>
-      <div className="mb-4">
-        {path.map((node, idx) => (
-          <span key={node.id}>
-            {idx > 0 && ' -> '} {node.text}
-          </span>
+      <h1>Future Tree Explorer</h1>
+      <div className={styles.path}>
+        {path.map((node) => (
+          <div key={node.id} className={styles.node}>
+            <span className={styles.nodeText}>{node.text}</span>
+          </div>
         ))}
       </div>
-      <div className="space-y-2">
+      <div className="children">
         {children.length === 0 && <p>No further branches.</p>}
         {children.map((child, idx) => (
-          <div key={child.id} className="border p-2 rounded">
-            <div className="font-semibold">
-              {idx + 1}. {child.text}
+          <div key={child.id} className="child">
+            <div>
+              <strong>{idx + 1}. {child.text}</strong>
             </div>
-            <div className="text-sm text-gray-600">Probability: {child.probability}</div>
+            <div className="prob">Probability: {child.probability}</div>
           </div>
         ))}
       </div>
       {children.length > 0 && (
-        <p className="mt-4 text-sm text-gray-500">
-          Press the number key corresponding to a branch to follow it.
-        </p>
+        <p className="hint">Press the number key corresponding to a branch to follow it.</p>
       )}
     </div>
   );

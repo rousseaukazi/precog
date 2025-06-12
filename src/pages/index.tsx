@@ -3,7 +3,7 @@ import { fakeTree } from '../data/fakeTree';
 
 export default function Home() {
   return (
-    <main className="p-8">
+    <main>
       <TreeExplorer tree={fakeTree} />
     </main>
   );
