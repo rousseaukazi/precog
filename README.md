@@ -17,6 +17,6 @@ This project contains a minimal Next.js application that visualizes a tree of hy
    npm run build
    ```
 
-The initial data lives in `src/data/fakeTree.ts`. It now defines five prebuilt paths,
-each 25 levels deep, so the demo loads instantly. You can modify or extend these
-paths to model additional futures.
+The initial data lives in `src/data/fakeTree.ts`. It now defines a branching tree
+with five options available at each level (depth 5). You can modify or extend
+these paths to model additional futures.
