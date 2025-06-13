@@ -5,41 +5,30 @@ export interface TreeNode {
   children?: TreeNode[];
 }
 
-// Utility to build a single linear path of `depth` nodes. Each node only has
-// one child so traversal is instantaneous.
-function buildPath(prefix: string, depth: number): TreeNode {
-  const root: TreeNode = {
-    id: `${prefix}-1`,
-    text: `Path ${prefix} - Level 1`,
-    probability: 1,
-    children: []
+// Build a branching tree where each level exposes five choices. This keeps the
+// data size reasonable while still allowing multiple branches to explore.
+const BRANCHES = ['A', 'B', 'C', 'D', 'E'];
+
+function buildBranch(prefix: string, level: number, maxDepth: number): TreeNode {
+  const node: TreeNode = {
+    id: `${prefix}-${level}`,
+    text: `Path ${prefix} - Level ${level}`,
+    probability: 1
   };
-  let current = root;
-  for (let i = 2; i <= depth; i++) {
-    const next: TreeNode = {
-      id: `${prefix}-${i}`,
-      text: `Path ${prefix} - Level ${i}`,
-      probability: 1,
-      children: []
-    };
-    current.children = [next];
-    current = next;
+
+  if (level < maxDepth) {
+    node.children = BRANCHES.map((letter) =>
+      buildBranch(`${prefix}${letter}`, level + 1, maxDepth)
+    );
   }
-  // Last node should not have children to signal the end of the path.
-  delete current.children;
-  return root;
+
+  return node;
 }
 
-// Five hard coded paths, each 25 levels deep.
+// Five hard coded paths with five choices at each level (depth 5).
 export const fakeTree: TreeNode = {
   id: 'root',
   text: 'GPT-5 launches next year',
   probability: 1,
-  children: [
-    buildPath('A', 25),
-    buildPath('B', 25),
-    buildPath('C', 25),
-    buildPath('D', 25),
-    buildPath('E', 25)
-  ]
+  children: BRANCHES.map((letter) => buildBranch(letter, 1, 5))
 };
